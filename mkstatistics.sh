@@ -77,23 +77,32 @@ LPC_LOC=$(cat $(find $CLONEDIR \
 JAVA_LOC=$(cat $(find $CLONEDIR \
 	-not -path \*/.git\* \
 	-path \*[.]java) | wc -l)
+HTML_LOC=$(cat $(find $CLONEDIR \
+	-not -path \*/.git\* \
+	-path \*[.]html) | wc -l)
+ROFF_LOC=$(cat $(find $CLONEDIR \
+	-not -path \*/.git\* \
+	-not -path \*majik3/lib\* \
+	-path \*[.][123456789]) | wc -l)
 AWK_LOC=$(cat $(find $CLONEDIR \
 	-not -path \*/.git\* \
 	-path \*[.]awk) | wc -l)
 
 TOTAL_LOC=$(expr $C_LOC + $LPC_LOC + $JAVA_LOC + \
-	$CPP_LOC + $SHELL_LOC + $AWK_LOC + $M4_LOC)
+	$CPP_LOC + $SHELL_LOC + $AWK_LOC + $M4_LOC + $HTML_LOC + $ROFF_LOC)
 
 echo "<p>"
 echo "Projects published: <b>$(ls -1 $CLONEDIR | wc -l)</b><br>"
 echo "Published lines of code: <b>\t$TOTAL_LOC</b><br>"
-echo "Statistics last updated: <b>$(date +'%B %d, %Y')</b><br>"
+echo "Last updated: <b>$(date +'%B %d, %Y')</b><br>"
 echo "<pre>"
 echo "C\t<b>$C_LOC</b> lines"
 echo "C++\t<b>$CPP_LOC</b> lines"
 echo "LPC\t<b>$LPC_LOC</b> lines"
 echo "Java\t<b>$JAVA_LOC</b> lines"
 echo "Shell\t<b>$SHELL_LOC</b> lines"
+echo "Roff\t<b>$ROFF_LOC</b> lines"
+echo "HTML\t<b>$HTML_LOC</b> lines"
 echo "AWK\t<b>$AWK_LOC</b> lines"
 echo "M4\t<b>$M4_LOC</b> lines"
 echo "</pre>"

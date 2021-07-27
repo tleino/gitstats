@@ -5,13 +5,23 @@ which git >/dev/null || exit 1
 which mktemp >/dev/null || exit 1
 
 GITDIR=/git
+PUBLISHED=/git/published
 CLONEDIR=/tmp/allgit
-for a in $(find $GITDIR -type d -maxdepth 1 | sed -n '2,$p') ; do
-	(cd $CLONEDIR && git clone $a 1>/dev/null 2>/dev/null)
+if [ -x $CLONEDIR ] ; then
+	echo "Deleting $CLONEDIR ..."
+	sleep 2
+	rm -rf $CLONEDIR
+fi
+mkdir $CLONEDIR
+for a in $(cat $PUBLISHED) ; do
+	(cd $CLONEDIR && git clone file://${GITDIR}/$a)
 done
+echo find /tmp/allgit -path \*/.git\* -delete
+sleep 2
+find /tmp/allgit -path \*/.git\* -delete
 TOTAL=$(ls -1 $CLONEDIR | wc -l)
 TMPFILE=$(mktemp /tmp/mkstatistics.XXXXXXXXX)
-(cd $CLONEDIR && sloccount . >/$TMPFILE 2>/dev/null)
+(cd $CLONEDIR && sloccount --crossdups --addlangall . >/$TMPFILE 2>/dev/null)
 echo "Statistics last updated: <b>$(date +'%B %d, %Y')</b><br>"
 echo "Published projects: <b>$TOTAL</b><br>"
 cat $TMPFILE \

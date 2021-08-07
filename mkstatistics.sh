@@ -59,9 +59,19 @@ CLONEDIR=/tmp/allgit
 if [ ! -x $CLONEDIR ] ; then
 	mkdir $CLONEDIR
 fi
+TOTAL_COMMITS=0
+TOTAL_MY_COMMITS=0
 for a in $(cat $PUBLISHED) ; do
 	(cd $CLONEDIR && git clone file://${GITDIR}/$a)
+	COMMITS=$(cd $CLONEDIR/$a && git log --pretty=oneline|wc -l)
+	TOTAL_COMMITS=$(expr $COMMITS + $TOTAL_COMMITS)
+	MY_COMMITS=$(cd $CLONEDIR/$a && git log --pretty=email \
+		| egrep "^From: " \
+		| egrep "namhas|tleino" \
+		| wc -l)
+	TOTAL_MY_COMMITS=$(expr $MY_COMMITS + $TOTAL_MY_COMMITS)
 done
+CONTRIB_COMMITS=$(expr $TOTAL_COMMITS - $TOTAL_MY_COMMITS)
 
 SHELL_LOC=$(shell_loc $CLONEDIR)
 CPP_LOC=$(cpp_loc $CLONEDIR)
@@ -97,7 +107,9 @@ TOTAL_LOC=$(expr $C_LOC + $LPC_LOC + $JAVA_LOC + \
 
 echo "<p>"
 echo "Projects published: <b>$(ls -1 $CLONEDIR | wc -l)</b><br>"
-echo "Published lines of code: <b>\t$TOTAL_LOC</b><br>"
+echo "Published lines of code: <b>$TOTAL_LOC</b><br>"
+echo "Total commits: <b>$TOTAL_COMMITS</b><br>"
+echo "Commits from contributors: <b>$CONTRIB_COMMITS</b><br>"
 echo "Last updated: <b>$(date +'%B %d, %Y')</b><br>"
 echo "<pre>"
 echo "C          <b>$C_LOC</b> lines"

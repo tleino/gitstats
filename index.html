@@ -16,6 +16,9 @@
         border-radius: 0.5em;
         text-align: left;
       }
+      h4 {
+        color: #666666;
+      }
     </style>
     <meta
      name="google-site-verification"
@@ -45,35 +48,52 @@ Statistics of the published source code that is stored in
 </p>
 <!-- begin: statistics -->
 <p>
-Projects published: <b>      28</b><br>
-Published lines of code: <b>165796</b><br>
-Total commits: <b>582</b><br>
+Projects published: <b>      29</b><br>
+Published lines of code: <b>167726</b><br>
+Total commits: <b>614</b><br>
 Commits from contributors: <b>148</b><br>
-Last updated: <b>August 07, 2021</b><br>
+Last updated: <b>September 07, 2021</b><br>
 <pre>
-C          <b>   28654</b> lines
+C          <b>   30402</b> lines
 C++        <b>    9939</b> lines
 LPC        <b>  120150</b> lines
 Javascript <b>     312</b> lines
 Java       <b>     809</b> lines
-Shell      <b>    1889</b> lines
-Roff       <b>     198</b> lines
-HTML       <b>    3422</b> lines
+Shell      <b>    1936</b> lines
+Roff       <b>     265</b> lines
+HTML       <b>    3490</b> lines
 AWK        <b>      24</b> lines
 M4         <b>     399</b> lines
 </pre>
 </p>
+<p>
+This is about <b>3000</b> A4-sized pages if printed out.
+</p>
 <!-- end: statistics -->
   </p>
   <h2>Voluntary projects and contributions</h2>
-  <p>
-  A much incomplete list in a roughly ascending date order.
-  </p>
-  <h3>Majik 3D MMORPG a.k.a. Majik MURPE (1995-2002)</h3>
+  <ul>
+  <li><a href="#games">Multiplayer games</a>
+  <li><a href="#linux">Linux distributions</a>
+  <li><a href="#net">Network pioneering</a>
+  <li><a href="#sec">Cybersecurity</a>
+  <li><a href="#x11">X Window System (X11) GUI programs</a>
+  <li><a href="#testing">Software testing tools</a>
+  <li><a href="#parsers">Parsers and frontends for data interchange formats</a>
+  <li><a href="#netlibs">Network protocol libraries</a>
+  <li><a href="#small">"Small Internet"-related tools</a>
+  <li><a href="#general">General Linux/Unix-tools</a>
+  <li><a href="#chat">Chat programs</a>
+  <li><a href="#admin">System administration tools</a>
+  <li><a href="#other">Other projects</a>
+  </ul>
+  <h3 id="games">Multiplayer games</h3>
+  <h4>Majik 3D MMORPG a.k.a. Majik MURPE (1995-2002)</h4>
   <p>
   Project founder, leader, designer and one of the core developers for a 
   massively multiplayer online role-playing game and its tools (such as custom
-  collaboration tools for managing the development).
+  collaboration tools for managing the development). These still work and can
+  be set up and play tested.
   </p>
   <ul>
   <li><a href="https://majik3d-legacy.org/">majik3d-legacy.org</a> - Information and live experiences about the game</a>
@@ -84,15 +104,21 @@ M4         <b>     399</b> lines
   <li><a href="https://github.com/tleino/majik4">majik4</a> - text-based 2D server source code
   <li><a href="https://github.com/tleino/majik3">majik3</a> - text-based MUD server source code
   </ul>
-  <h3>BatMUD (1997)</h3>
+  <p>
+  Also see <a href="https://github.com/tleino/iosplit">iosplit</a> which can
+  be used as a simple MUD client. You can also try Majik 3 over a special
+  <a href="https://majik3d-legacy.org/play.html">Web client</a>.
+  </p>
+  <h4>BatMUD (1997)</h4>
   <p>
   Software developer (wizard) of BatMUD game, developing in-game environments
-  for exploration.
+  for exploration. Still works.
   <ul>
   <li><a href="https://www.tnsp.org/maps/loc.php?a=Namhas">Locations of BatMUD by Namhas</a>
   </ul>
   </p>
-  <h3>Debian Linux (1997-1999)</h3>
+  <h3 id="linux">Linux distributions</h3>
+  <h4>Debian Linux (1997-1999)</h4>
   <p>
   Debian Linux package maintainer.
   <ul>
@@ -102,7 +128,8 @@ M4         <b>     399</b> lines
   </li>
   </ul>
   </p>
-  <h3>Znet UUCP network non-profit (1995-1996)</h3>
+  <h3 id="net">Network pioneering</h3>
+  <h4>Znet UUCP network non-profit (1995-1996)</h4>
   <p>
   Founding member, chairman and a software developer of a non-profit organization
   that was running Finland's largest UUCP network for getting data transmitted
@@ -114,7 +141,7 @@ M4         <b>     399</b> lines
   similar gatewaying and convenience systems for getting most of batch-run
   e-mail.
   </p>
-  <h3>BBS software developer and operator (1994-1996)</h3>
+  <h4>BBS software developer and operator (1994-1996)</h4>
   <p>
   System operator and software developer contributor for a public non-profit
   Unix-like remote shell a.k.a. "bulletin board system" and its software and
@@ -134,17 +161,173 @@ M4         <b>     399</b> lines
   <p>Also found and fixed multiple vulnerabilities in software written by
   others, including remote access vulnerabilities.
   </p>
-  <h3>Virus-removal tool (1998)</h3>
+  <h3 id="sec">Cybersecurity</h3>
+  <h4>Virus-removal tool (1998)</h4>
   <p>
   Discovered a computer virus that was not recognized by existing antivirus
   tools and wrote a virus-detection and virus-removal tool for that virus
   type.
   </p>
-  <h3>Other projects</h3>
-  <ul>
-  <li><a href="https://github.com/tleino?tab=repositories">
-  All repositories in Github</a>
-  </ul>
+  <h4>webgw</h4>
+  <p>
+  <a href="https://github.com/tleino/webgw">webgw</a> is a non-caching
+  Web proxy that enforces whitelisting policy by holding non-whitelisted
+  attempts until the user unblocks the connection. The tool is useful for
+  the most paranoid Web users.
+  </p>
+  <h4>xout</h4>
+  <p>
+  <a href="https://github.com/tleino/xout">xout</a> forwards keyboard and/or
+  mouse input to an X11 window, which may be running a terminal session or
+  serial console to a remote X11 server. Replaying and storing the input is
+  possible. Useful with airgapped computers.
+  </p>
+  <h4>xin</h4>
+  <p>
+  <a href="https://github.com/tleino/xin">xin</a> receives input from
+  <a href="https://github.com/tleino/xout">xout</a>. Useful with airgapped
+  computers.
+  </p>
+  <h3 id="x11">X Window System (X11) GUI programs</h3>
+  <p>
+  Also see <a href="https://github.com/tleino/xin">xin</a> and
+  <a href="https://github.com/tleino/xout">xout</a>.
+  </p>
+  <h4>cocowm</h4>
+  <p>
+  <a href="https://github.com/tleino/cocowm">cocowm</a> is a Column
+  Commander Window Manager for X11 Window System that specializes in
+  automating layout management by arranging program windows in
+  columns. Therefore, cocowm is a tiling window manager and in particular
+  is most inspired by the Plan9 acme editor, as well as the Plan B.
+  </p>
+  <h4>xrtgauge</h4>
+  <p>
+  <a href="https://github.com/tleino/xrtgauge">xrtgauge</a> draws live
+  gauge from standard input data.
+  </p>
+  <h4>xrtgraph</h4>
+  <p>
+  <a href="https://github.com/tleino/xrtgraph">xrtgraph</a> draws live
+  graphs from standard input data.
+  </p>
+  <h3 id="testing">Software testing tools</h3>
+  <h4>crbehave</h4>
+  <p>
+  <a href="https://github.com/tleino/crbehave">crbehave</a> is a behavior
+  driven development framework for C that uses standard regular expressions
+  for matching instead of a specialized system and instead of relying on
+  macros.
+  </p>
+  <h3 id="parsers">Parsers and frontends for data interchange formats</h3>
+  <h4>dhdb</h4>
+  <p>
+  <a href="https://github.com/tleino/dhdb">dhdb</a> is a multi-format dynamic
+  and hierarchical database for C. Provides an in-memory object system that
+  adds scripting language-like ease regarding common data structures. Can
+  import and export multiple formats such as XML, INI, JSON. Can be used as
+  a general-purpose JSON library. Light-weight, well-embeddable, permissive
+  license. Used in some embedded Linux devices around the world.
+  </p>
+  <h4>dhdb-edit</h4>
+  <p>
+  <a href="https://github.com/tleino/dhdb-edit">dhdb-edit</a> is a simple
+  example of a ncurses-based text user interface for navigating a JSON file
+  using <a href="https://github.com/tleino/dhdb">dhdb</a>.
+  </p>
+  <h4>ivjson</h4>
+  <p>
+  <a href="https://github.com/tleino/ivjson">ivjson</a> is an another attempt
+  to a very minimal, nice-to-use JSON API. Lighter-weight and simpler than
+  <a href="https://github.com/tleino/dhdb">dhdb</a>.
+  </p> 
+  <h4>jsonkv</h4>
+  <p>
+  <a href="https://github.com/tleino/jsonkv">jsonkv</a> converts JSON files
+  to a simple key-value format for easy grepping, awk'ing, etc.
+  </p>
+  <h4>xmlkv</h4>
+  <p>
+  <a href="https://github.com/tleino/xmlkv">xmlkv</a> converts XML files to
+  a simple key-value format for easy grepping, awk'ing, etc.
+  </p>
+  <h3 id="netlibs">Network protocol libraries</h3>
+  <h4>emws</h4>
+  <p>
+  <a href="https://github.com/tleino/emws">emws</a> is an embeddable WebSocket
+  server in a way that the source files can be statically linked to a program
+  wishing to communicate over WebSocket. Work in progress: could be updated
+  with a LibTLS-like API and integrated with LibTLS for providing wss-support.
+  Very small and lightweight. Also acts as an example of how easy it is to
+  write WebSocket implementation from scratch.
+  </p>
+  <h3 id="small">"Small Internet"-related tools</h3>
+  <h4>gemcache</h4>
+  <p>
+  <a href="https://github.com/tleino/gemcache">gemcache</a> is a simple caching
+  proxy for <a href="https://en.wikipedia.org/wiki/Gemini_(protocol)">Gemini</a>
+  space that could be used on its own, or in combination with
+  <a href="https://github.com/tleino/gemsurf">gemsurf</a>.
+  </p>
+  <h4>gemsrv</h4>
+  <p>
+  <a href="https://github.com/tleino/gemsrv">gemsrv</a> is a simple
+  <a href="https://en.wikipedia.org/wiki/Gemini_(protocol)">Gemini</a> server.
+  </p>
+  <h4>gemsurf</h4>
+  <p>
+  <a href="https://github.com/tleino/gemsrv">gemsurf</a> is a simple interface
+  to <a href="https://github.com/tleino/gemcache">gemcache</a> and provides
+  a interface to the
+  <a href="https://en.wikipedia.org/wiki/Gemini_(protocol)">Gemini</a> space.
+  </p>
+  <h4>xd</h4>
+  <p>
+  <a href="https://github.com/tleino/xd">xd</a> is eXtensible eDitor (proof
+  of concept), inspired by ed(1) and
+  <a href="https://github.com/CMB/edbrowse">edbrowse</a> and can be used as an
+  interface to
+  <a href="https://en.wikipedia.org/wiki/Gemini_(protocol)">Gemini</a> space
+  through <a href="https://github.com/tleino/gemsrv">gemsurf</a>.
+  </p>
+  <h4>gopherd</h4>
+  <p>
+  <a href="https://github.com/tleino/gopherd">gopherd</a> is a simple
+  gopherd that uses chroot + privdrop and separate processes, with
+  pledge/unveil if available.
+  </p>
+  <h3 id="general">General Linux/Unix-tools</h3>
+  <h4>iosplit</h4>
+  <p>  
+  <a href="https://github.com/tleino/iosplit">iosplit</a> splits terminal
+  to two parts: the output area and the input area. Can be used as a MUD
+  client, or when communicating with line-based protocols such as raw IRC
+  protocol, raw SMTP, embedded devices, etc.
+  </p>
+  <h4>overlay</h4>
+  <p>
+  <a href="https://github.com/tleino/overlay">overlay</a> performs a
+  Unix-like command pipeline, but dumps output of all commands to
+  stdout while adding metadata which specifies which output belongs to
+  which command. Might be useful in some rare debugging situations, or
+  for teaching.
+  </p>
+  <h3 id="chat">Chat programs</h3>
+  <h4>jicra</h4>
+  <p>
+  <a href="https://github.com/tleino/jicra">jicra</a> is a legacy Java
+  IRC Chat Room Applet which provided an interface to IRC "back in the day"
+  without looking like an IRC-client.
+  </p>
+  <h3 id="admin">System administration tools</h3>
+  <h4>shaback</h4>
+  <p>
+  <a href="https://github.com/tleino/shaback">shaback</a> is a SHA-checksumming
+  backup/restore tool that is fast and has many features such as deduplication.
+  </p>
+  <h3 id="other">Other projects</h3>
+  See the repositories in
+  <a href="https://github.com/tleino?tab=repositories">Github</a>.
   </div>
   </body>
 </html>

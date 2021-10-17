@@ -50,6 +50,19 @@ function m4_loc {
 	cat $(m4_files $1) | wc -l
 }
 
+print_lang_stats() {
+	echo "C          <b>$C_LOC </b>lines"
+	echo "C++        <b>$CPP_LOC </b>lines"
+	echo "LPC        <b>$LPC_LOC </b>lines"
+	echo "Javascript <b>$JS_LOC </b>lines"
+	echo "Java       <b>$JAVA_LOC </b>lines"
+	echo "Shell      <b>$SHELL_LOC </b>lines"
+	echo "Roff       <b>$ROFF_LOC </b>lines"
+	echo "HTML       <b>$HTML_LOC </b>lines"
+	echo "AWK        <b>$AWK_LOC </b>lines"
+	echo "M4         <b>$M4_LOC </b>lines"
+}
+
 which git >/dev/null || exit 1
 
 GITDIR=/git
@@ -112,15 +125,6 @@ echo "Total commits: <b>$TOTAL_COMMITS</b><br>"
 echo "Commits from contributors: <b>$CONTRIB_COMMITS</b><br>"
 echo "Last updated: <b>$(date +'%B %d, %Y')</b><br>"
 echo "<pre>"
-echo "C          <b>$C_LOC</b> lines"
-echo "C++        <b>$CPP_LOC</b> lines"
-echo "LPC        <b>$LPC_LOC</b> lines"
-echo "Javascript <b>$JS_LOC</b> lines"
-echo "Java       <b>$JAVA_LOC</b> lines"
-echo "Shell      <b>$SHELL_LOC</b> lines"
-echo "Roff       <b>$ROFF_LOC</b> lines"
-echo "HTML       <b>$HTML_LOC</b> lines"
-echo "AWK        <b>$AWK_LOC</b> lines"
-echo "M4         <b>$M4_LOC</b> lines"
+print_lang_stats | sort -nr -k 3
 echo "</pre>"
 echo "</p>"

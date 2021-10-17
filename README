@@ -1,0 +1,6 @@
+A simple script to create lines of source code statistics from published
+repositories.
+
+Example at: https://namhas.dev/#summary
+
+Not very generic -- you may need to modify the script to suit your needs.

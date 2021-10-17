@@ -128,3 +128,7 @@ echo "<pre>"
 print_lang_stats | sort -nr -k 3
 echo "</pre>"
 echo "</p>"
+echo "<p>"
+PAGES=$(expr $TOTAL_LOC / 60)
+echo "This is about <b>${PAGES}</b> A4-sized pages if printed out."
+echo "</p>"

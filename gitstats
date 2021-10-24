@@ -8,6 +8,43 @@ function sh_files {
 	done
 }
 
+function lpc_files {
+	find $1 \
+		-not -path \*/.git\* \
+		-path \*majik?/lib\*[.][ch]
+}
+
+function java_files {
+	find $1 \
+		-not -path \*/.git\* \
+		-path \*[.]java
+}
+
+function js_files {
+	find $1 \
+		-not -path \*/.git\* \
+		-path \*[.]js
+}
+
+function html_files {
+	find $1 \
+		-not -path \*/.git\* \
+		-path \*[.]html
+}
+
+function roff_files {
+	find $1 \
+		-not -path \*/.git\* \
+		-not -path \*majik3/lib\* \
+		-path \*[.][123456789]
+}
+
+function awk_files {
+	find $1 \
+		-not -path \*/.git\* \
+		-path \*[.]awk
+}
+
 function m4_files {
 	for a in $(find $1 \
 	    -type f \
@@ -19,6 +56,13 @@ function m4_files {
 			echo $a
 		fi
 	done
+}
+
+function c_files {
+	find $1 \
+		-path \*[.][ch] \
+		-not -path \*/.git\* \
+		-not -path \*majik?/lib\*
 }
 
 function cpp_files {
@@ -38,29 +82,47 @@ function cpp_files {
 	done
 }
 
-function cpp_loc {
-	cat $(cpp_files $1) | wc -l
+#
+# top_lines:
+#   $1: Root directory
+#   $2: Filelist function e.g. cpp_files
+#
+function top_lines {
+	TOP_NUM=0
+	TOP=""
+	for a in $(find $1 -type d -maxdepth 1 -mindepth 1) ; do
+		FILELIST=$($2 $a)
+		if [ "$FILELIST" != "" ] ; then
+			NUM=$(cat $FILELIST | wc -l)
+			if [ $NUM -gt $TOP_NUM ] ; then
+				TOP=$a
+				TOP_NUM=$NUM
+			fi
+		fi
+	done
+	echo $(basename $TOP)
 }
 
-function shell_loc {
-	cat $(sh_files $1) | wc -l
-}
-
-function m4_loc {
-	cat $(m4_files $1) | wc -l
+#
+# loc:
+#   $1: Root directory
+#   $2: Filelist function e.g. cpp_files
+#
+function loc {
+	cat $($2 $1) | wc -l
 }
 
 print_lang_stats() {
-	echo "C          <b>$C_LOC </b>lines"
-	echo "C++        <b>$CPP_LOC </b>lines"
-	echo "LPC        <b>$LPC_LOC </b>lines"
-	echo "Javascript <b>$JS_LOC </b>lines"
-	echo "Java       <b>$JAVA_LOC </b>lines"
-	echo "Shell      <b>$SHELL_LOC </b>lines"
-	echo "Roff       <b>$ROFF_LOC </b>lines"
-	echo "HTML       <b>$HTML_LOC </b>lines"
-	echo "AWK        <b>$AWK_LOC </b>lines"
-	echo "M4         <b>$M4_LOC </b>lines"
+	echo "C          <b>$C_LOC </b>lines (top: $C_TOP)"
+	echo "C++        <b>$CPP_LOC </b>lines (top: $CPP_TOP)"
+	echo "LPC        <b>$LPC_LOC </b>lines (top: $LPC_TOP)"
+	echo "Javascript <b>$JS_LOC </b>lines (top: $JS_TOP)"
+	echo "Java       <b>$JAVA_LOC </b>lines (top: $JAVA_TOP)"
+	echo "Shell      <b>$SHELL_LOC </b>lines (top: $SHELL_TOP)"
+	echo "Roff       <b>$ROFF_LOC </b>lines (top: $ROFF_TOP)"
+	echo "HTML       <b>$HTML_LOC </b>lines (top: $HTML_TOP)"
+	echo "AWK        <b>$AWK_LOC </b>lines (top: $AWK_TOP)"
+	echo "M4         <b>$M4_LOC </b>lines (top: $M4_TOP)"
 }
 
 which git >/dev/null || exit 1
@@ -86,33 +148,35 @@ for a in $(cat $PUBLISHED) ; do
 done
 CONTRIB_COMMITS=$(expr $TOTAL_COMMITS - $TOTAL_MY_COMMITS)
 
-SHELL_LOC=$(shell_loc $CLONEDIR)
-CPP_LOC=$(cpp_loc $CLONEDIR)
-M4_LOC=$(m4_loc $CLONEDIR)
+SHELL_LOC=$(loc $CLONEDIR sh_files)
+SHELL_TOP=$(top_lines $CLONEDIR sh_files)
 
-C_LOC=$(cat $(find $CLONEDIR \
-	-path \*[.][ch] \
-	-not -path \*/.git\* \
-	-not -path \*majik?/lib\*) | wc -l)
-LPC_LOC=$(cat $(find $CLONEDIR \
-	-not -path \*/.git\* \
-	-path \*majik?/lib\*[.][ch]) | wc -l)
-JAVA_LOC=$(cat $(find $CLONEDIR \
-	-not -path \*/.git\* \
-	-path \*[.]java) | wc -l)
-JS_LOC=$(cat $(find $CLONEDIR \
-	-not -path \*/.git\* \
-	-path \*[.]js) | wc -l)
-HTML_LOC=$(cat $(find $CLONEDIR \
-	-not -path \*/.git\* \
-	-path \*[.]html) | wc -l)
-ROFF_LOC=$(cat $(find $CLONEDIR \
-	-not -path \*/.git\* \
-	-not -path \*majik3/lib\* \
-	-path \*[.][123456789]) | wc -l)
-AWK_LOC=$(cat $(find $CLONEDIR \
-	-not -path \*/.git\* \
-	-path \*[.]awk) | wc -l)
+CPP_LOC=$(loc $CLONEDIR cpp_files)
+CPP_TOP=$(top_lines $CLONEDIR cpp_files)
+
+M4_LOC=$(loc $CLONEDIR m4_files)
+M4_TOP=$(top_lines $CLONEDIR m4_files)
+
+C_LOC=$(loc $CLONEDIR c_files)
+C_TOP=$(top_lines $CLONEDIR c_files)
+
+LPC_LOC=$(loc $CLONEDIR lpc_files)
+LPC_TOP=$(top_lines $CLONEDIR lpc_files)
+
+JAVA_LOC=$(loc $CLONEDIR java_files)
+JAVA_TOP=$(top_lines $CLONEDIR java_files)
+
+JS_LOC=$(loc $CLONEDIR js_files)
+JS_TOP=$(top_lines $CLONEDIR js_files)
+
+HTML_LOC=$(loc $CLONEDIR html_files)
+HTML_TOP=$(top_lines $CLONEDIR html_files)
+
+ROFF_LOC=$(loc $CLONEDIR roff_files)
+ROFF_TOP=$(top_lines $CLONEDIR roff_files)
+
+AWK_LOC=$(loc $CLONEDIR awk_files)
+AWK_TOP=$(top_lines $CLONEDIR awk_files)
 
 TOTAL_LOC=$(expr $C_LOC + $LPC_LOC + $JAVA_LOC + \
 	$CPP_LOC + $SHELL_LOC + $AWK_LOC + $M4_LOC + $HTML_LOC + $ROFF_LOC + \

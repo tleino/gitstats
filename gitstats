@@ -1,5 +1,10 @@
 #!/bin/sh
 
+#
+# Configuration
+#
+GIT_URL=https://github.com/tleino
+
 function sh_files {
 	for a in $(find $1 -type f -not -path \*/.git\*) ; do
 		if head -1 $a | grep '#!/bin/sh' >/dev/null ; then
@@ -113,16 +118,16 @@ function loc {
 }
 
 print_lang_stats() {
-	echo "C          <b>$C_LOC </b>lines (top: $C_TOP)"
-	echo "C++        <b>$CPP_LOC </b>lines (top: $CPP_TOP)"
-	echo "LPC        <b>$LPC_LOC </b>lines (top: $LPC_TOP)"
-	echo "Javascript <b>$JS_LOC </b>lines (top: $JS_TOP)"
-	echo "Java       <b>$JAVA_LOC </b>lines (top: $JAVA_TOP)"
-	echo "Shell      <b>$SHELL_LOC </b>lines (top: $SHELL_TOP)"
-	echo "Roff       <b>$ROFF_LOC </b>lines (top: $ROFF_TOP)"
-	echo "HTML       <b>$HTML_LOC </b>lines (top: $HTML_TOP)"
-	echo "AWK        <b>$AWK_LOC </b>lines (top: $AWK_TOP)"
-	echo "M4         <b>$M4_LOC </b>lines (top: $M4_TOP)"
+	echo "C          <b>$C_LOC </b>lines (top: <a href=\"${GIT_URL}/${C_TOP}\">$C_TOP</a>)"
+	echo "C++        <b>$CPP_LOC </b>lines (top: <a href=\"${GIT_URL}/${CPP_TOP}\">$CPP_TOP</a>)"
+	echo "LPC        <b>$LPC_LOC </b>lines (top: <a href=\"${GIT_URL}/${LPC_TOP}\">$LPC_TOP</a>)"
+	echo "Javascript <b>$JS_LOC </b>lines (top: <a href=\"${GIT_URL}/${JS_TOP}\">$JS_TOP</a>)"
+	echo "Java       <b>$JAVA_LOC </b>lines (top: <a href=\"${GIT_URL}/${JAVA_TOP}\">$JAVA_TOP</a>)"
+	echo "Shell      <b>$SHELL_LOC </b>lines (top: <a href=\"${GIT_URL}/${SHELL_TOP}\">$SHELL_TOP</a>)"
+	echo "Roff       <b>$ROFF_LOC </b>lines (top: <a href=\"${GIT_URL}/${ROFF_TOP}\">$ROFF_TOP</a>)"
+	echo "HTML       <b>$HTML_LOC </b>lines (top: <a href=\"${GIT_URL}/${HTML_TOP}\">$HTML_TOP</a>)"
+	echo "AWK        <b>$AWK_LOC </b>lines (top: <a href=\"${GIT_URL}/${AWK_TOP}\">$AWK_TOP</a>)"
+	echo "M4         <b>$M4_LOC </b>lines (top: <a href=\"${GIT_URL}/${M4_TOP}\">$M4_TOP</a>)"
 }
 
 which git >/dev/null || exit 1

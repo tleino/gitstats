@@ -199,5 +199,9 @@ echo "</pre>"
 echo "</p>"
 echo "<p>"
 PAGES=$(expr $TOTAL_LOC / 60)
-echo "This is about <b>${PAGES}</b> A4-sized pages if printed out."
+KG=$(expr $PAGES \* 5 / 1000)
+CM=$(expr $PAGES / 156)
+echo "This is about <b>${PAGES}</b> A4-sized pages if printed out. "
+echo "That would weigh about <b>${KG}</b> kg as a <b>${CM}</b> cm tall stack "
+echo "if printed as single sided sheets."
 echo "</p>"
